@@ -107,6 +107,18 @@ func chooseELBClient(d *schema.ResourceData, config *Config) (*gophercloud.Servi
 	return config.loadElasticLoadBalancerClient(GetRegion(d, config))
 }
 
+func chooseCESClient(d *schema.ResourceData, config *Config) (*gophercloud.ServiceClient1, error) {
+	return config.loadCESClient(GetRegion(d, config))
+}
+
+func isResourceNotFound(err error) bool {
+	if err == nil {
+		return false
+	}
+	_, ok := err.(gophercloud.ErrDefault404)
+	return ok
+}
+
 func isELBResourceNotFound(err error) bool {
 	if err == nil {
 		return false

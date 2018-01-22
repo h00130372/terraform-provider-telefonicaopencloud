@@ -450,7 +450,7 @@ func NewCESClient(client *gophercloud.ProviderClient, eo gophercloud.EndpointOpt
 	if err != nil {
 		return nil, err
 	}
-	sc.Endpoint = strings.Join([]string{sc.Endpoint[:strings.LastIndex(sc.Endpoint, "/v")], "V1.0"}, "/")
+	sc.Endpoint = strings.Join([]string{sc.Endpoint[:strings.LastIndex(sc.Endpoint, "/v")], "V1.0/"}, "/")
 	sc.ResourceBase = sc.Endpoint
 	return sc, err
 }
