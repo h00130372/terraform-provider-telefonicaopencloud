@@ -443,3 +443,14 @@ func NewElasticLoadBalancer(client *gophercloud.ProviderClient, eo gophercloud.E
 	sc.ResourceBase = sc.Endpoint
 	return sc, err
 }
+
+func NewCESClient(client *gophercloud.ProviderClient, eo gophercloud.EndpointOpts) (*gophercloud.ServiceClient1, error) {
+	//sc, err := initClientOpts1(client, eo, "ces")
+	sc, err := initClientOpts1(client, eo, "elb")
+	if err != nil {
+		return nil, err
+	}
+	sc.Endpoint = strings.Join([]string{sc.Endpoint[:strings.LastIndex(sc.Endpoint, "/v")], "V1.0"}, "/")
+	sc.ResourceBase = sc.Endpoint
+	return sc, err
+}
